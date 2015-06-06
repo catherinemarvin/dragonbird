@@ -1,0 +1,20 @@
+{
+  "name": "dragonbird",
+  "version": "0.0.0",
+  "homepage": "https://github.com/khwang/dragonbird",
+  "authors": [
+    "Kevin Hwang <k3vinhwang@gmail.com>"
+  ],
+  "description": "DragonBird",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser-official": "~2.3.0"
+  }
+}
