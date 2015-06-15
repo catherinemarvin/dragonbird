@@ -5,6 +5,7 @@ var mainState = {
     game.stage.backgroundColor = "#71c5cf";
     game.load.image("dragon", "assets/dragon.png");
     game.load.image("pipe", "assets/pipe.png");
+    game.load.audio("jump", "assets/flap.wav");
   },
 
   create: function () {
@@ -23,6 +24,8 @@ var mainState = {
     this.pipes.enableBody = true;
     this.pipes.createMultiple(20, "pipe");
     this.timer = game.time.events.loop(1500, this.addRowOfPipes, this);
+
+    this.jumpSound = game.add.audio("jump");
 
     this.score = 0;
     this.labelScore = game.add.text(20, 20, "0", {
@@ -57,6 +60,8 @@ var mainState = {
     if (!this.dragon.alive) {
       return;
     }
+
+    this.jumpSound.play();
     this.dragon.body.velocity.y = - 350;
 
     var animation = game.add.tween(this.dragon);
