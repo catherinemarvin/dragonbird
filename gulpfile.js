@@ -29,6 +29,10 @@ gulp.task("index", function () {
   return gulp.src("index.html").pipe(gulp.dest("dist/"));
 });
 
+gulp.task("watch", function () {
+  gulp.watch(["js/*", "index.html"], "default");
+});
+
 gulp.task("webserver", function () {
   connect.server(
     {
