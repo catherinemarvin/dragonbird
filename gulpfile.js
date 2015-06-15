@@ -14,11 +14,28 @@ gulp.task("bower", function () {
 });
 
 gulp.task("phaser", function () {
-  return gulp.src(config.bowerDir + "/phaser-official/build/phaser.js").pipe(gulp.dest("vendor/js/"));
+  return gulp.src(config.bowerDir + "/phaser-official/build/phaser.js").pipe(gulp.dest("dist/js/"));
+});
+
+gulp.task("assets", function () {
+  return gulp.src("assets/*").pipe(gulp.dest("dist/assets/"));
+});
+
+gulp.task("scripts", function () {
+  return gulp.src("js/*").pipe(gulp.dest("dist/js/"));
+});
+
+gulp.task("index", function () {
+  return gulp.src("index.html").pipe(gulp.dest("dist/"));
 });
 
 gulp.task("webserver", function () {
-  connect.server();
+  connect.server(
+    {
+      root: [ "dist" ],
+      port: 8000
+    }
+  );
 });
 
-gulp.task("default", [ "bower", "phaser", "webserver" ]);
+gulp.task("default", [ "bower", "phaser", "scripts", "assets", "index", "webserver" ]);
