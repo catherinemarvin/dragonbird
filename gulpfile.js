@@ -14,7 +14,7 @@ gulp.task("bower", function () {
 });
 
 gulp.task("phaser", function () {
-  return gulp.src(config.bowerDir + "/phaser-official/build/phaser.js").pipe(gulp.dest("dist/js/"));
+  return gulp.src(config.bowerDir + "/phaser-official/build/phaser.js").pipe(gulp.dest("vendor/js/"));
 });
 
 gulp.task("webserver", function () {
