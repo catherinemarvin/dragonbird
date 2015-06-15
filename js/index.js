@@ -35,14 +35,28 @@ var mainState = {
       this.restartGame();
     }
 
-    game.physics.arcade.overlap(this.dragon, this.pipes, this.restartGame, null, this);
+    game.physics.arcade.overlap(this.dragon, this.pipes, this.hitPipe, null, this);
 
     if (this.dragon.angle < 20) {
       this.dragon.angle += 1;
     }
   },
 
+  hitPipe: function () {
+    if (!this.dragon.alive) {
+      return;
+    }
+    this.dragon.alive = false;
+    game.time.events.remove(this.timer);
+    this.pipes.forEachAlive(function (pipe) {
+      pipe.body.velocity.x = 0;
+    });
+  },
+
   jump: function () {
+    if (!this.dragon.alive) {
+      return;
+    }
     this.dragon.body.velocity.y = - 350;
 
     var animation = game.add.tween(this.dragon);
