@@ -6,6 +6,7 @@ var mainState = {
     game.load.image("dragon", "assets/dragon.png");
     game.load.image("pipe", "assets/pipe.png");
     game.load.audio("jump", "assets/flap.wav");
+    game.load.audio("pipehit", "assets/pipe-hit.wav");
   },
 
   create: function () {
@@ -26,6 +27,8 @@ var mainState = {
     this.timer = game.time.events.loop(1500, this.addRowOfPipes, this);
 
     this.jumpSound = game.add.audio("jump");
+
+    this.pipeHitSound = game.add.audio("pipehit");
 
     this.score = 0;
     this.labelScore = game.add.text(20, 20, "0", {
@@ -49,6 +52,8 @@ var mainState = {
     if (!this.dragon.alive) {
       return;
     }
+
+    this.pipeHitSound.play();
     this.dragon.alive = false;
     game.time.events.remove(this.timer);
     this.pipes.forEachAlive(function (pipe) {
@@ -95,8 +100,6 @@ var mainState = {
     this.score += 1;
     this.labelScore.text = this.score;
   }
-
-
 };
 
 game.state.add("main", mainState);

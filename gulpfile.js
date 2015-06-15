@@ -26,11 +26,12 @@ gulp.task("scripts", function () {
 });
 
 gulp.task("index", function () {
-  return gulp.src("index.html").pipe(gulp.dest("dist/"));
+  return gulp.src("index.html").pipe(gulp.dest("dist/")).pipe(connect.reload());
 });
 
 gulp.task("watch", function () {
-  gulp.watch(["js/*", "index.html"], "default");
+  gulp.watch(["js/*"], ["scripts"]);
+  gulp.watch(["index.html"], ["index"]);
 });
 
 gulp.task("webserver", function () {
@@ -42,4 +43,4 @@ gulp.task("webserver", function () {
   );
 });
 
-gulp.task("default", [ "bower", "phaser", "scripts", "assets", "index", "webserver" ]);
+gulp.task("default", [ "bower", "phaser", "scripts", "assets", "index", "webserver", "watch" ]);
